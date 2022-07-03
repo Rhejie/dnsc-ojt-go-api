@@ -3,18 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Institute;
+use App\Repositories\Settings\InstituteRepository;
 use Illuminate\Http\Request;
 
 class InstituteController extends Controller
 {
+    private $instituteRepository;
+
+    public function __construct(InstituteRepository $instituteRepository)
+    {
+        $this->instituteRepository = $instituteRepository;    
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $page = $request->page ? $request->page : 1;
+        $count = $request->count ? $request->count : 10;
+        $search = $request->search && $request->search != '' && $request->search !== 'null' ? $request->search : null;
+
+        $params = [
+            'page' => $page,
+            'count' => $count,
+            'search' => $search
+        ];
+
+        $institutes = $this->instituteRepository->getInstitutes(json_decode(json_encode($params)));
+
+        return response()->json($institutes, 200);
+
     }
 
     /**
