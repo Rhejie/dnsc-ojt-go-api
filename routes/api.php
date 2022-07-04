@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ Route::prefix('user')->middleware('auth:api')->group(function() {
     Route::prefix('setting')->group(function() {
         Route::get('/roles', [SettingsController::class, 'getRoles']);
         Route::resource('institutes', InstituteController::class);
+        Route::resource('courses', CourseController::class);
         Route::get('/get-institutes', [SettingsController::class, 'getInstitutes']);
     });
 });

@@ -54,7 +54,7 @@ class CourseRepository extends Repository {
         $course = $this->model()->find($id);
         if($course) {
             $course->delete();
-        } 
+        }
     }
 
     public function getCourseById($id) {
@@ -64,5 +64,5 @@ class CourseRepository extends Repository {
         return $course;
 
     }
-    
+
 }

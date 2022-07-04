@@ -9,6 +9,8 @@ class Course extends Model
 {
     use HasFactory;
 
+    protected $with = ['institute'];
+
     public function institute() {
         return $this->belongsTo(Institute::class);
     }
