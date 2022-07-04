@@ -13,5 +13,13 @@ class SettingServices {
 
         return $roles;
     }
+
+    public function getInstitutes() {
+        $institutes = Institute::get();
+
+        return $institutes;
+    }
+
+    
     
 }

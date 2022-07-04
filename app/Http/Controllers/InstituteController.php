@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreInstituteRequest;
+use App\Http\Requests\UpdateInstituteRequest;
 use App\Models\Institute;
 use App\Repositories\Settings\InstituteRepository;
 use Illuminate\Http\Request;
@@ -53,9 +55,12 @@ class InstituteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInstituteRequest $request)
     {
-        //
+        $institute = $this->instituteRepository->storeInstitute($request);
+
+        return response()->json($institute, 200);
+
     }
 
     /**
@@ -64,9 +69,11 @@ class InstituteController extends Controller
      * @param  \App\Models\Institute  $institute
      * @return \Illuminate\Http\Response
      */
-    public function show(Institute $institute)
+    public function show($id)
     {
-        //
+        $institute = $this->instituteRepository->getInstituteById($id);
+
+        return response()->json($institute, 200);
     }
 
     /**
@@ -87,9 +94,12 @@ class InstituteController extends Controller
      * @param  \App\Models\Institute  $institute
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Institute $institute)
+    public function update(UpdateInstituteRequest $request, $id)
     {
-        //
+        $institute = $this->instituteRepository->updateInstitute($request, $id);
+        
+        return response()->json($institute,200);
+
     }
 
     /**
@@ -98,8 +108,12 @@ class InstituteController extends Controller
      * @param  \App\Models\Institute  $institute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Institute $institute)
+    
+    public function destroy($id)
     {
-        //
+        $institute = $this->instituteRepository->deleteInstitute($id);
+
+        return response()->json($institute, 200);
+
     }
 }

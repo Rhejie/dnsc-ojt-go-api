@@ -47,6 +47,11 @@ class InstituteRepository extends Repository {
         }
     }
 
+    public function getInstituteById($id) {
+        $institute = $this->model()->find($id);
+        return $institute;
+    }
+
     public function deleteInstitute($id) {
         $institute = $this->model()->find($id);
         if($institute) {

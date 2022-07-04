@@ -13,4 +13,9 @@ class SettingsController extends Controller
 
         return response()->json($roles, 200);
     }
+
+    public function getInstitutes(SettingServices $settingServices) {
+        $institutes = $settingServices->getInstitutes();
+        return response()->json($institutes, 200);
+    }
 }

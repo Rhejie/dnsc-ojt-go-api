@@ -31,5 +31,6 @@ Route::prefix('user')->middleware('auth:api')->group(function() {
     Route::prefix('setting')->group(function() {
         Route::get('/roles', [SettingsController::class, 'getRoles']);
         Route::resource('institutes', InstituteController::class);
+        Route::get('/get-institutes', [SettingsController::class, 'getInstitutes']);
     });
 });
