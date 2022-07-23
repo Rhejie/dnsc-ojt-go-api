@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('file_path')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('file_requirement_id')->constrained('file_requirements')->onDelete('cascade');
+            $table->softdeletes();
             $table->timestamps();
         });
     }

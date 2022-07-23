@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->foreignId('agencies')->constrained('institutes')->onDelete('cascade');
             $table->string('description')->nullable();
+            $table->softdeletes();
             $table->timestamps();
         });
     }

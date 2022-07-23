@@ -2,19 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AgencyStoreRequest;
 use App\Models\Agency;
+use App\Repositories\Agency\AgencyRepository;
 use Illuminate\Http\Request;
 
 class AgencyController extends Controller
 {
+    private $agencyRepository;
+
+    public function __construct(AgencyRepository $agencyRepository) {
+        $this->agencyRepository = $agencyRepository;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $page = $request->page ? $request->page : 1;
+        $count = $request->count ? $request->count : 10;
+        $search = $request->search && $request->search != '' && $request->search !== 'null' ? $request->search : null;
+
+        $params = [
+            'page' => $page,
+            'count' => $count,
+            'search' => $search
+        ];
+
+        $agencies = $this->agencyRepository->getAgencies(json_decode(json_encode($params)));
+
+        return response()->json($agencies, 200);
     }
 
     /**
@@ -33,9 +52,11 @@ class AgencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AgencyStoreRequest $request)
     {
-        //
+        $agency = $this->agencyRepository->storeAgency($request);
+
+        return response()->json($agency, 200);
     }
 
     /**
@@ -44,9 +65,11 @@ class AgencyController extends Controller
      * @param  \App\Models\Agency  $agency
      * @return \Illuminate\Http\Response
      */
-    public function show(Agency $agency)
+    public function show($id)
     {
-        //
+        $agency = $this->agencyRepository->getAgencyById($id);
+
+        return response()->json($agency, 200);
     }
 
     /**
@@ -67,9 +90,11 @@ class AgencyController extends Controller
      * @param  \App\Models\Agency  $agency
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agency $agency)
+    public function update(AgencyStoreRequest $request, $id)
     {
-        //
+        $agency = $this->agencyRepository->updateAgency($request, $id);
+
+        return response()->json($agency, 200);
     }
 
     /**
@@ -78,7 +103,7 @@ class AgencyController extends Controller
      * @param  \App\Models\Agency  $agency
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agency $agency)
+    public function destroy($id)
     {
         //
     }

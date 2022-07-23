@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('isView')->default(false);
             $table->boolean('isRejected')->default(false);
             $table->date('date_rejected')->nullable();
+            $table->softdeletes();
             $table->timestamps();
         });
     }

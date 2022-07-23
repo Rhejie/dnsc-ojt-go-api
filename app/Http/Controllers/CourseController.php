@@ -67,9 +67,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $res = $this->courseRepository->getCourseById($id);
+
+        return response()->json($res);
     }
 
     /**
@@ -90,9 +92,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(StoreCourseRequest $request, $id)
     {
-        //
+        $res = $this->courseRepository->updateCourse($request, $id);
+
+        return response()->json($res, 200);
     }
 
     /**

@@ -18,4 +18,9 @@ class SettingsController extends Controller
         $institutes = $settingServices->getInstitutes();
         return response()->json($institutes, 200);
     }
+
+    public function getCourses(SettingServices $settingServices) {
+        $courses = $settingServices->getCourses();
+        return response()->json($courses, 200);
+    }
 }

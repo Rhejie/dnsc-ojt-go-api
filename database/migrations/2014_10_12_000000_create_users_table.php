@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('course_id')->nullable();
+            $table->unsignedBigInteger('institute_id')->nullable();
             $table->unsignedBigInteger('agency_department_id')->nullable();
             $table->string('email')->unique();
             $table->string('username');
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->string('password');
             $table->date('deploy_date')->nullable();
             $table->rememberToken();
+            $table->softdeletes();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Course;
 use App\Models\Institute;
 use App\Models\Role;
 
@@ -18,6 +19,11 @@ class SettingServices {
         $institutes = Institute::get();
 
         return $institutes;
+    }
+
+    public function getCourses() {
+        $courses = Course::get();
+        return $courses;
     }
 
     

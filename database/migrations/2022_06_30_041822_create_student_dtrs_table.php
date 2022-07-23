@@ -21,6 +21,7 @@ return new class extends Migration
             $table->time('time_out');
             $table->string('latitude');
             $table->string('longitude');
+            $table->softdeletes();
             $table->timestamps();
         });
     }

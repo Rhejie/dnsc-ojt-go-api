@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
-                'password' =>  Hash::make('pa55w0rd!')
+                'password' =>  Hash::make('password!')
             ],
             [
                 'firstname' => 'institute',
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'role_id' => 2,
                 'username' => 'institute',
                 'email' => 'institute@gmail.com',
-                'password' =>  Hash::make('pa55w0rd!')
+                'password' =>  Hash::make('password!')
             ],
         ];
 

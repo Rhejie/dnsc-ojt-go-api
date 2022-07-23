@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstituteController;
@@ -34,5 +35,14 @@ Route::prefix('user')->middleware('auth:api')->group(function() {
         Route::resource('institutes', InstituteController::class);
         Route::resource('courses', CourseController::class);
         Route::get('/get-institutes', [SettingsController::class, 'getInstitutes']);
+        Route::get('/get-courses', [SettingsController::class, 'getCourses']);
     });
+    Route::prefix('agency')->group(function (){
+        Route::resource('agencies', AgencyController::class);
+    });
+});
+
+
+Route::get('/', function () {
+    return 'its working';
 });

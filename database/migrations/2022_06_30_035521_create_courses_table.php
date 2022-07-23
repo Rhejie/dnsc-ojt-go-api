@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('institute_id')->constrained('institutes')->onDelete('cascade');
             $table->string('name');
             $table->string('abbreviation');
+            $table->softdeletes();
             $table->timestamps();
         });
     }
